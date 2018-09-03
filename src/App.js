@@ -34,7 +34,7 @@ class App extends Component {
       currentNum: [],
       expression: newExpression
     })
-    console.log(this.state.expression.join(''))
+
   }
   decimalClickHandler = (e) => {
     let newCurrentNum = this.state.currentNum
@@ -47,7 +47,24 @@ class App extends Component {
     })
   }
   equalsClickHandler = (e) => {
-    console.log(e.target.innerText);
+    let newExpression = this.state.expression
+    newExpression.push(this.state.currentNum.join(''))
+    this.setState({
+      currentNum: [],
+      expression: newExpression
+    })
+
+    try {
+      let result = eval(this.state.expression.join(''))
+      this.setState({
+        total: result
+      })
+    }
+    catch (e) {
+      alert(e)
+    }
+    let display = document.getElementById('display')
+    display.innerText = this.state.total
   }
 
 

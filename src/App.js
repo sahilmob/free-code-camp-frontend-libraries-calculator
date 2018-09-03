@@ -22,7 +22,10 @@ class App extends Component {
     console.log(this.state.currentNum);
   }
   acClickHandler = (e) => {
-    console.log(e.target.innerText);
+    this.setState({
+      total: null,
+      currentNum: [0]
+    })
   }
   mathOpClickHandler = (e) => {
     console.log(e.target.innerText);

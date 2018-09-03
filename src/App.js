@@ -6,11 +6,20 @@ import ButtonTall from './components/ButtonTall'
 class App extends Component {
   state = {
     total: null,
-    currentNum: 0
+    currentNum: ["0"]
   }
 
   numClickHandler = (e) => {
-    console.log(e.target.innerText);
+    let newCurrentNum = this.state.currentNum
+    newCurrentNum.push(e.target.innerText)
+    if (newCurrentNum[0] === "0") {
+      newCurrentNum.shift()
+    }
+    this.setState({
+      currentNum: newCurrentNum
+    })
+    console.log(this.state);
+    console.log(this.state.currentNum);
   }
   acClickHandler = (e) => {
     console.log(e.target.innerText);
@@ -30,7 +39,7 @@ class App extends Component {
     return (
       <div className="App">
         <div></div>
-        <div id="display">0</div>
+        <div id="display">{this.state.currentNum.join('')}</div>
         <ButtonWide numString="clear" number="AC" clicked={this.acClickHandler} />
         <ButtonNormal numString="add" number="+" clicked={this.mathOpClickHandler} />
         <ButtonNormal numString="subtract" number="-" clicked={this.mathOpClickHandler} />

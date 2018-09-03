@@ -37,7 +37,14 @@ class App extends Component {
     console.log(this.state.expression.join(''))
   }
   decimalClickHandler = (e) => {
-    console.log(e.target.innerText);
+    let newCurrentNum = this.state.currentNum
+    if (newCurrentNum.includes('.')) {
+      return
+    }
+    newCurrentNum.push('.')
+    this.setState({
+      currentNum: newCurrentNum
+    })
   }
   equalsClickHandler = (e) => {
     console.log(e.target.innerText);
@@ -47,7 +54,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <div></div>
+        <div>{this.state.expression}</div>
         <div id="display">{this.state.currentNum.join('')}</div>
         <ButtonWide numString="clear" number="AC" clicked={this.acClickHandler} />
         <ButtonNormal numString="add" number="+" clicked={this.mathOpClickHandler} />

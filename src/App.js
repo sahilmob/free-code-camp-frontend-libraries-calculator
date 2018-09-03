@@ -12,6 +12,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div></div>
+        <div id="display">0</div>
         <ButtonWide numString="clear" number="AC" />
         <ButtonNormal numString="add" number="+" />
         <ButtonNormal numString="subtract" number="-" />

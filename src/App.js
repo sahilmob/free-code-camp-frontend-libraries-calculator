@@ -6,7 +6,8 @@ import ButtonTall from './components/ButtonTall'
 class App extends Component {
   state = {
     total: null,
-    currentNum: ["0"]
+    currentNum: ["0"],
+    expression: []
   }
 
   numClickHandler = (e) => {
@@ -18,8 +19,6 @@ class App extends Component {
     this.setState({
       currentNum: newCurrentNum
     })
-    console.log(this.state);
-    console.log(this.state.currentNum);
   }
   acClickHandler = (e) => {
     this.setState({
@@ -28,7 +27,14 @@ class App extends Component {
     })
   }
   mathOpClickHandler = (e) => {
-    console.log(e.target.innerText);
+    let newExpression = this.state.expression
+    newExpression.push(this.state.currentNum.join(''))
+    newExpression.push(e.target.innerText)
+    this.setState({
+      currentNum: [],
+      expression: newExpression
+    })
+    console.log(this.state.expression.join(''))
   }
   decimalClickHandler = (e) => {
     console.log(e.target.innerText);

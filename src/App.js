@@ -6,25 +6,30 @@ import ButtonTall from './components/ButtonTall'
 class App extends Component {
   state = {
     total: null,
-    currentNum: ["0"],
+    currentNum: [],
     expression: []
   }
 
   numClickHandler = (e) => {
+    let display = document.getElementById('display')
+    if (display.innerText === "0" && e.target.innerText === "0") {
+      return
+    }
     let newCurrentNum = this.state.currentNum
     newCurrentNum.push(e.target.innerText)
-    if (newCurrentNum[0] === "0") {
-      newCurrentNum.shift()
-    }
     this.setState({
       currentNum: newCurrentNum
     })
+    display.innerText = this.state.currentNum.join('')
   }
   acClickHandler = (e) => {
     this.setState({
       total: null,
-      currentNum: [0]
+      currentNum: [],
+      expression: []
     })
+    let display = document.getElementById('display')
+    display.innerText = "0"
   }
   mathOpClickHandler = (e) => {
     let newExpression = this.state.expression
@@ -72,7 +77,7 @@ class App extends Component {
     return (
       <div className="App">
         <div>{this.state.expression}</div>
-        <div id="display">{this.state.currentNum.join('')}</div>
+        <div id="display">0</div>
         <ButtonWide numString="clear" number="AC" clicked={this.acClickHandler} />
         <ButtonNormal numString="add" number="+" clicked={this.mathOpClickHandler} />
         <ButtonNormal numString="subtract" number="-" clicked={this.mathOpClickHandler} />
